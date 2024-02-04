@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading Screen Example</title>
+    <style>
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999; /* Ensure it's above other content */
+        }
+
+        .spinner {
+            border: 6px solid #f3f3f3; /* Light grey */
+            border-top: 6px solid #3498db; /* Blue */
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite; /* Spin animation */
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        #content {
+            display: none;
+        }
+    </style>
+
+    
+    <script>
+        // Wait for the page to load
+        window.addEventListener('load', function() {
+            // Hide the loading screen
+            document.getElementById('loading-screen').style.display = 'none';
+            // Show the content
+            document.getElementById('content').style.display = 'block';
+        });
+    </script>
+</head>
+<body>
+    <div id="loading-screen">
+        <img class="spinner" src="XOXO-logo.svg">
+    </div>
+
+    <!-- Your page content goes here -->
+    <div id="content">
+        <!-- Content here -->
+    </div>
+
+    
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XOXO</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(#F7CAC9, #B3CEE5);
+        }
+        .Welcome {
+            background: linear-gradient(#F7CAC9, #B3CEE5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            transition: 0.6s ease;
+        }
+
+        .hidden {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .play {
+            color: black;
+            font-size: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 1em;
+            text-align: center;
+            background-color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .play:hover {
+            background-color: #4CAF50;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            color: #fff;
+        }
+
+        .Welcome, .hidden, .play {
+            position: fixed;
+            transition: all ease-in-out 600ms; 
+        }
+
+        @media only screen and (max-width: 600px) {
+            .Welcome, .play {
+                max-width: 100%;
+                text-align: center;
+            }
+        }
+
+        .GameBtn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        #PvP, #PvA {
+            background-color: #fff;
+            color: black;
+            font-size: 18px;
+            border-radius: 16px;
+            padding: 10px;
+            margin-bottom: 1em;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        #PvP:hover, #PvA:hover {
+            background-color: #50d766;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            color: #fff;
+        }
+
+        select {
+            margin-top: 10px;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .overlay-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+        }
+
+        .members {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            justify-content: space-evenly;
+            width: 100%;
+            max-width: 1080px;
+            padding: 10px;
+        }
+
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(#F7CAC9, #B3CEE5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .game-logo {
+            display: flex;
+            justify-content: center;
+            position: absolute;
+        }
+
+        #welcome {
+            margin-top:350px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="loading-screen">
+        <img class="game-logo" src="XOXO-logo.svg" alt="Game Logo">
+        <p id="welcome">WELCOME</p>
+    </div>
+
+    <div class="Welcome">
+        <button class="play">Play Game</button>
+    </div>
+    <div>
+        <section class="GameBtn">
+            <button id="PvP">Player vs Player</button>
+            <button id="PvA">Player vs AI</button>
+        </section>
+
+        <div class="members">
+            <p> Baron, Shaira Nicole </p>
+            <p> Beriso, Mark Joseph </p>
+            <p> Castelltort, Sevaztiene Izach </p>
+            <p> Lascano, Malvin Jonas </p>
+            <p> Samson, Hans Timothy </p>
+        </div>
+    </div>
+
+    <div id="gameStartOverlay" class="overlay">
+        <div class="overlay-content">
+            <h2>Game Starting...</h2>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('load', function() {
+            // Show loading screen
+            var loadingScreen = document.getElementById('loading-screen');
+            loadingScreen.style.display = 'flex';
+    
+            // Gradually reduce opacity after 10 seconds
+            setTimeout(function() {
+                var opacity = 1;
+                var interval = setInterval(function() {
+                    opacity -= 0.1; // Reduce opacity by 0.1 every 100 milliseconds
+                    loadingScreen.style.opacity = opacity;
+                    if (opacity <= 0) {
+                        clearInterval(interval);
+                        loadingScreen.style.display = 'none'; // Hide loading screen when opacity reaches 0
+                    }
+                }, 100);
+            }, 5000); // Loading time 5 seconds
+        });
+    
+        document.addEventListener("DOMContentLoaded", function () {
+            var pvpButton = document.getElementById("PvP");
+            var pvaButton = document.getElementById("PvA");
+            var overlayButton = document.querySelector('.play');
+            var overlay = document.getElementById("gameStartOverlay");
+    
+            pvpButton.addEventListener("click", function () {
+                var gamePvPURL = "Game-HumanVhumaN.html"; // Fixed variable name
+                window.location.href = gamePvPURL; // Corrected variable name
+                overlay.style.display = "block";
+                setTimeout(function () {
+                    overlay.style.display = "none";
+                    goToHumanVshumaN();
+                }, 3000);
+            });
+    
+            pvaButton.addEventListener("click", function () {
+                var gamePvAURL = "Game-AI-Difficulty.html";
+                window.location.href = gamePvAURL;
+            });
+    
+            var starterScreen = document.querySelector('.Welcome');
+            starterScreen.addEventListener('click', function(event) {
+                if (event.target === overlayButton) {
+                    starterScreen.style.opacity = 0;
+                    setTimeout(function () {
+                        starterScreen.classList.add('hidden');
+                    }, 610);
+                }
+            });
+    
+            // Prevent interaction with the overlay except for clicking on the button
+            overlay.addEventListener('click', function(event) {
+                if (event.target === overlay) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+            });
+        });
+    
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="GameDesign.css">
+    <script src="Easy.js" defer></script>
+    <title>XOXO - EASY</title>
+</head>
+
+<body>
+    <div>
+        <section class="heading">
+            <button id="Menu"> MENU </button>
+        </section>
+
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <p>Are you sure you want to quit the game and go to the main menu?</p>
+                <button id="confirmYes">Yes</button>
+                <button id="confirmNo">No</button>
+            </div>
+        </div>
+        
+        <section class="Refresh">
+            <button id="resetButton">Refresh Board</button>
+        </section>
+
+        <table>
+            <tr>
+                <td id="cell0" class="row1" onclick="placemarker(this)"></td>
+                <td id="cell1" class="row1" onclick="placemarker(this)"></td>
+                <td id="cell2" class="row1" onclick="placemarker(this)"></td>
+                <td id="cell3" class="row1" onclick="placemarker(this)"></td>
+                <td id="cell4" class="row1" onclick="placemarker(this)"></td>
+                <td id="cell5" class="row1" onclick="placemarker(this)"></td>
+            </tr>
+            <tr>
+                <td id="cell6" class="row2" onclick="placemarker(this)"></td>
+                <td id="cell7" class="row2" onclick="placemarker(this)"></td>
+                <td id="cell8" class="row2" onclick="placemarker(this)"></td>
+                <td id="cell9" class="row2" onclick="placemarker(this)"></td>
+                <td id="cell10" class="row2" onclick="placemarker(this)"></td>
+                <td id="cell11" class="row2" onclick="placemarker(this)"></td>
+            </tr>
+            <tr>
+                <td id="cell12" class="row3" onclick="placemarker(this)"></td>
+                <td id="cell13" class="row3" onclick="placemarker(this)"></td>
+                <td id="cell14" class="row3" onclick="placemarker(this)"></td>
+                <td id="cell15" class="row3" onclick="placemarker(this)"></td>
+                <td id="cell16" class="row3" onclick="placemarker(this)"></td>
+                <td id="cell17" class="row3" onclick="placemarker(this)"></td>
+            </tr>
+            <tr>
+                <td id="cell18" class="row4" onclick="placemarker(this)"></td>
+                <td id="cell19" class="row4" onclick="placemarker(this)"></td>
+                <td id="cell20" class="row4" onclick="placemarker(this)"></td>
+                <td id="cell21" class="row4" onclick="placemarker(this)"></td>
+                <td id="cell22" class="row4" onclick="placemarker(this)"></td>
+                <td id="cell23" class="row4" onclick="placemarker(this)"></td>
+            </tr>
+            <tr>
+                <td id="cell24" class="row5" onclick="placemarker(this)"></td>
+                <td id="cell25" class="row5" onclick="placemarker(this)"></td>
+                <td id="cell26" class="row5" onclick="placemarker(this)"></td>
+                <td id="cell27" class="row5" onclick="placemarker(this)"></td>
+                <td id="cell28" class="row5" onclick="placemarker(this)"></td>
+                <td id="cell29" class="row5" onclick="placemarker(this)"></td>
+            </tr>
+        </table>
+        <div id="scoreboard">
+            <p id="playerScore">Player: 0</p>
+            <p id="computerScore">Computer: 0</p>
+        </div>
+    </div>
+    
+    <section class="Back">
+        <button id="Back"> Back </button>
+    </section>
+
+    <div class="members">
+        <p> Baron, Shaira Nicole </p>
+        <p> Beriso, Mark Joseph </p>
+        <p> Castelltort, Sevaztiene Izach </p>
+        <p> Lascano, Malvin Jonas </p>
+        <p> Samson, Hans Timothy </p>
+    </div>
+</body>
+</html>
