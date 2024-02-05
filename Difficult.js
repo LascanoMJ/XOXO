@@ -140,17 +140,9 @@ function blockPlayerWin() {
               turn = "X";
           }
           return;
-
-          
       }
   }
 }
-
-
-
-
-
-
 
 function findBlockingCombo(playerMark, computerMark) {
   const playerThreatCells = [6, 1, 4, 11, 25, 18, 23, 28];

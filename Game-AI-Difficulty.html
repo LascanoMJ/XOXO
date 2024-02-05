@@ -9,9 +9,34 @@
     <title>XOXO - Difficulties</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Press Start 2P', cursive;
             margin: 0;
             padding: 0;
+            background: linear-gradient(#F7CAC9, #B3CEE5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .game-boy-container {
+            background-color: #ffffff;
+            padding: 40px;
+            border: 15px solid #000000;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            position: relative;
+            max-width: 600px;
+            width: 90%;
+        }
+
+        .game-boy-logo {
+            background: url('XOXO-logo.svg') no-repeat center center;
+            width: 200px;
+            height: 40px;
+            margin: 10px auto;
+            background-size: contain;
         }
 
         .GameBtn {
@@ -34,16 +59,38 @@
             cursor: pointer;
         }
 
-        #text {
-            font-size: 20px;
-        }
-
-        #start {
-            font-size: 20px;
+        .buttons {
+            display: block;
+            margin: 20px;
         }
 
         button:hover {
             background-color: #45a049;
+        }
+
+        #text {
+            display: block;
+            margin: 20px;
+            color: #6f6f6f;
+            font-size: 40px;
+        }
+
+        #difficulty {
+            border-radius: 10px;
+            margin: 20px;
+            border: 3px solid #000000;
+            background-color: #d1d1d1;
+            width: 30%;
+            max-width: 100%;
+        }
+
+        #back {
+            padding: 15px 25px;
+            background-color: #d75064;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
         }
 
         .overlay {
@@ -66,50 +113,67 @@
             color: white;
         }
 
-        .buttons {
-            display:block;
-            margin:20px;
+        option {
+            color: #7e7d7d;
         }
 
-        #back {
-            padding: 15px 25px;
-            background-color: #d75064;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
+        #start {
+            font-size: 20px;
         }
 
-        #difficulty {
-            border-radius: 16px;
-            margin:20px;
+        @media screen and (max-width: 768px) {
+            .game-boy-container {
+                padding: 20px;
+                border: 10px solid #000000;
+            }
+
+            .game-boy-logo {
+                width: 150px;
+                height: 30px;
+            }
+
+            #text {
+                font-size: 24px;
+            }
+
+            #difficulty {
+                border-radius: 8px;
+            }
+
+            button {
+                padding: 12px 20px;
+            }
         }
     </style>
+
 </head>
 
 <body>
-    <section class="GameBtn">
-        <label id="text" for="difficulty">AI Difficulty:</label>
-        <select id="difficulty" class="js-difficulty-selector">
-            <option value="Easy">Easy</option>
-            <option value="Difficult">Difficult</option>
-            <option value="Expert">Expert</option>
-        </select>
+    <div class="game-boy-container">
+        <div class="game-boy-logo"></div>
 
-        <section class="buttons">
-            <button id="start" onclick="startGame()">Start Game</button>
-        </section>
-        
-        <section class="buttons">
-            <button id="back" onclick="goToMainMenu()">Back to Menu</button>
-        </section>
-    </section>
+        <section class="GameBtn">
+            <label id="text" for="difficulty">AI Difficulty:</label>
+            <select id="difficulty" class="js-difficulty-selector">
+                <option value="Easy">Easy</option>
+                <option value="Difficult">Difficult</option>
+                <option value="Expert">Expert</option>
+            </select>
 
-    <!-- Game Start Overlay -->
-    <div id="gameStartOverlay" class="overlay">
-        <div class="overlay-content">
-            <h2>Game Starting</h2>
-            <p>Difficulty: <span id="selectedDifficulty"></span></p>
+            <section class="buttons">
+                <button id="start" onclick="startGame()">Start Game</button>
+            </section>
+
+            <section class="buttons">
+                <button id="back" onclick="goToMainMenu()">Back to Menu</button>
+            </section>
+        </section>
+
+        <div id="gameStartOverlay" class="overlay">
+            <div class="overlay-content">
+                <h2>Game Starting</h2>
+                <p>Difficulty: <span id="selectedDifficulty"></span></p>
+            </div>
         </div>
     </div>
 
@@ -119,7 +183,6 @@
             var overlay = document.getElementById("gameStartOverlay");
             document.getElementById("selectedDifficulty").innerText = selectedDifficulty;
 
-            // Set the destination based on the selected difficulty
             var destination = "";
             switch (selectedDifficulty) {
                 case "Easy":
@@ -132,25 +195,21 @@
                     destination = "Game-ExpertAI.html";
                     break;
                 default:
-                    // Default to EasyAI if no valid difficulty is selected
                     destination = "Game-EasyAI.html";
                     break;
             }
 
-            // Simulate animation by showing the overlay for 3 seconds
             overlay.style.display = "block";
             setTimeout(function () {
                 overlay.style.display = "none";
-                // Redirect to the appropriate destination after the overlay animation
                 window.location.href = destination;
             }, 3000);
         }
 
         function goToMainMenu() {
-            window.location.href = "index.html"; // Change the URL to the main menu page
+            window.location.href = "index.html";
         }
     </script>
-
 </body>
 
 </html>

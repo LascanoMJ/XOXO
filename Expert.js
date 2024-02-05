@@ -68,57 +68,47 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
   
-  function computerTurn() {
-    setTimeout(function () {
-        if (!gameover) {
+    function computerTurn() {
+        setTimeout(function () {
+          if (!gameover) {
             // First, prioritize winning moves
             const winningCombo = findBlockingCombo("O", "X");
             if (winningCombo !== null) {
-                const openSpot = winningCombo.find(index => board[index] === "");
-                if (openSpot !== undefined) {
-                    board[openSpot] = turn;
-                    document.getElementById("cell" + openSpot).innerHTML = turn;
-                    checkWin();
-                    // Switch back to player's turn if the game is still not over
-                    if (!gameover) {
-                        turn = "X";
-                    }
-                    return;
-                }
-            }
-  
-            // If no immediate winning move, prioritize blocking the player's potential winning moves
-            const blockingCombo = findBlockingCombo("X", "O");
-            if (blockingCombo !== null) {
-                const openSpot = blockingCombo.find(index => board[index] === "");
-                if (openSpot !== undefined) {
-                    board[openSpot] = turn;
-                    document.getElementById("cell" + openSpot).innerHTML = turn;
-                    checkWin();
-                    // Switch back to player's turn if the game is still not over
-                    if (!gameover) {
-                        turn = "X";
-                    }
-                    return;
-                }
-            }
-  
-            // If no immediate threat or winning move found, choose a random empty cell
-            const emptyCells = board.reduce((acc, _, i) => (board[i] === "" ? acc.concat(i) : acc), []);
-            if (emptyCells.length > 0) {
-                const randomIndex = Math.floor(Math.random() * emptyCells.length);
-                const computerMove = emptyCells[randomIndex];
-                board[computerMove] = turn;
-                document.getElementById("cell" + computerMove).innerHTML = turn;
+              const openSpot = winningCombo.find((index) => board[index] === "");
+              if (openSpot !== undefined) {
+                board[openSpot] = turn;
+                document.getElementById("cell" + openSpot).innerHTML = turn;
                 checkWin();
                 // Switch back to player's turn if the game is still not over
                 if (!gameover) {
-                    turn = "X";
+                  turn = "X";
                 }
+                return;
+              }
             }
-        }
-    },);
-  }
+       
+            // Always block the player's potential winning moves
+            blockPlayerWin();
+       
+            // If no immediate threat or winning move found, choose a random empty cell
+            const emptyCells = board.reduce(
+              (acc, _, i) => (board[i] === "" ? acc.concat(i) : acc),
+              []
+            );
+            if (emptyCells.length > 0) {
+              const randomIndex = Math.floor(Math.random() * emptyCells.length);
+              const computerMove = emptyCells[randomIndex];
+              board[computerMove] = turn;
+              document.getElementById("cell" + computerMove).innerHTML = turn;
+              checkWin();
+              // Switch back to player's turn if the game is still not over
+              if (!gameover) {
+                turn = "X";
+              }
+            }
+          }
+        });
+      }
   
   function blockPlayerWin() {
     // Check each possible winning combo for the player
